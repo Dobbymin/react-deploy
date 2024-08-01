@@ -11,6 +11,7 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      // 'Cross-Control-Allow-Origin': '*',
       ...config.headers,
     },
   });
@@ -18,10 +19,11 @@ const initInstance = (config: AxiosRequestConfig): AxiosInstance => {
   return instance;
 };
 
-export const BASE_URL = 'https://api.example.com';
+export const BASE_URL = process.env.REACT_APP_API_KWON;
+// export const BASE_URL = 'https://api.example.com';
 
 export const fetchInstance = initInstance({
-  baseURL: 'https://api.example.com',
+  baseURL: `${BASE_URL}`,
 });
 
 fetchInstance.interceptors.request.use((config) => {
